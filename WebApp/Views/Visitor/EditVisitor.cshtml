@@ -1,0 +1,40 @@
+﻿@model WebApp.Models.Visitor
+
+<div>
+    <form asp-action="SaveVisitor" asp-controller="Visitor" class="form-group">
+        <p>
+            <input type="hidden" asp-for="Id" />
+        </p>
+        <p>
+            <label asp-for="Name" class="control-label">Имя:</label>
+            <input type="text" asp-for="Name" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="Surname" class="control-label">Фамилия:</label>
+            <input type="text" asp-for="Surname" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="LastName" class="control-label">Отчество:</label>
+            <input type="text" asp-for="LastName" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="Adress" class="control-label">Адрес:</label>
+            <input type="text" asp-for="Adress" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="Sex" class="control-label">Пол:</label>
+            <input type="text" asp-for="Sex" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="Phone" class="control-label">Телефон:</label>
+            <input type="tel" asp-for="Phone" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="Birthday" class="control-label">Дата рождения:</label>
+            <input type="datetime-local" asp-for="Birthday" class="col-form-label" />
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" class="btn btn-info" />
+        </p>
+    </form>
+</div>

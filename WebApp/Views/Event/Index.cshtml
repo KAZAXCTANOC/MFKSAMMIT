@@ -1,0 +1,62 @@
+﻿@model WebApp.ViewModels.VisitorViewModel
+
+@using (Html.BeginForm("DeleteEvents", "Event", FormMethod.Post))
+{ 
+    <input style="margin:10px" type="submit" value="Удалить все события без участников" class="btn btn-info"/>
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>Наименование события</th>
+        <th>Статус</th>
+        <th>Описание</th>
+        <th>Дата проведения</th>
+        <th>Добавление участников</th>
+        <th>Список участников</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (Event item in ViewBag.eventList)
+    {
+        <tr>
+            <td width="10%">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td width="10%">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td width="10%">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td width="10%">
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td height="100%">
+                @using (Html.BeginForm("Index", "Event", FormMethod.Post))
+                {
+                    <input type="hidden" value="@item.Id" name="EventId" />
+                    @Html.ListBoxFor(V => V.VisitorsId, Model.Visitors, new { @class = "form-control" })
+                    <br />
+                    <input type="submit" value="Добавить участника" class="btn btn-info" />
+                }
+            </td>
+
+            <td width="15%">
+                <ul>
+                @foreach (var visitor in item.ListVisitors)
+                {
+                    <li>@visitor.Name @visitor.LastName @visitor.Surname</li>
+                }
+                </ul>
+            </td>
+
+            <td width="10%">
+                @Html.ActionLink("Редактировать", "EventEdit", new { id = item.Id })
+            </td>
+
+            <td width="10%">
+                @Html.ActionLink("Закрыть событие", "CloseEvent", new { eventId = item.Id })
+            </td>
+        </tr>
+    }
+</table>

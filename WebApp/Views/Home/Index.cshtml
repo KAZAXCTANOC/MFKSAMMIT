@@ -1,0 +1,34 @@
+﻿@model WebApp.Models.Event
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <div class="div1">
+        <form asp-action="Index" asp-controller="Home">
+            <p>
+                <input type="hidden" asp-for="Id" />
+            </p>
+            <p>
+                <label asp-for="Name" class="control-label">Наименование события:</label>
+                <input type="text" asp-for="Name" class="form-control" />
+            </p>
+            <p>
+                <label asp-for="Date" class="control-label">Дата и время проведения:</label>
+                <input type="datetime-local" asp-for="Date" />
+            </p>
+            <p>
+                <label asp-for="Status" class="dropdown">Состояние:</label>
+                @Html.DropDownList("status", (SelectList)ViewBag.statusList, new { @style = "width:inherit" })
+            </p>
+            <p>
+                <label asp-for="Description" class="control-label">Описание события:</label>
+                <input type="text" asp-for="Description" class="form-control" />
+            </p>
+            <p>
+                <input type="submit" value="Сохранить" class="btn btn-info" />
+            </p>
+        </form>
+    </div>
+</div>

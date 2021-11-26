@@ -1,0 +1,74 @@
+﻿@model WebApp.Models.Event
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<div>
+    <form asp-action="Edit" asp-controller="Event">
+        <p>
+            <input type="hidden" asp-for="Id" />
+        </p>
+        <p>
+            <label asp-for="Name" class="control-label">Наименование события:</label>
+            <input type="text" asp-for="Name" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="Date" class="control-label">Дата и время проведения:</label>
+            <input type="datetime-local" asp-for="Date" />
+        </p>
+        <p>
+            <label asp-for="Status" class="dropdown">Состояние:</label>
+            @Html.DropDownList("status", (SelectList)ViewBag.statusList)
+        </p>
+        <p>
+            <label asp-for="Description" class="control-label">Описание события:</label>
+            <input type="text" asp-for="Description" class="form-control" />
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
+        </p>
+    </form>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Отчество</th>
+            <th>Телефонный номер</th>
+            <th>Пол</th>
+            <th>Дата рождения</th>
+            <th>Адрес</th>
+            <th></th>
+        </tr>
+
+        @foreach (Visitor item in ViewBag.ListVisitors)
+        {
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Birthday)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adress)
+                    </td>
+                    <td>@Html.ActionLink("X", "Delete", "Event", new { EventId = ViewBag.EventId, VisitorId = item.Id }) </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
